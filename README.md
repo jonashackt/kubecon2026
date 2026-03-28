@@ -2,13 +2,14 @@
 Notes from the KubeCon Europe 2026 in Amsterdam
 
 
-I had the chance to attend the KubeCon in beautiful Amsterdam from 23–26 March 2026. Here I share some notes about the conference - to remember myself, and also for your pleasure.
+I had the chance to attend the KubeCon in beautiful Amsterdam from 23–26 March 2026. Here I share some notes about the conference - to remember for myself, and also for your pleasure.
 
 ## TLDR;
 
 * Platform Engineering ain't dead - it matured and the most successful framework here is Crossplane (it's basically everywhere)
 * Argo Workflows is a thing (and it scales much better than Apache Airflow)
 * [LangChain4j](https://github.com/langchain4j/langchain4j) was used in so many live demos that I would argue it's time to have a look into it!
+* Building your own managed K8s cluster infra is still hard in 2026
 
 
 ## Wait: Platform Engineering ain't dead! (Mo 23.03.2026)
@@ -121,3 +122,36 @@ The lessons leared:
 - Especially for PR creation
 - Complexity vs portability
 - Could've used Serverless MCP, external code assistant for PR creation, async remote agents, etc.
+
+
+## We Broke Free From Cloud-Managed Kubernetes: Now What? - Kārlis Akots Gribulis & Per Hedegaard Christiansen, Saxo Bank 
+
+[link to talk](https://colocatedeventseu2026.sched.com/event/2DY52/we-broke-free-from-cloud-managed-kubernetes-now-what-karlis-akots-gribulis-per-hedegaard-christiansen-saxo-bank) | [slides](docs/kubecon2026karlispersaxo.pdf)
+
+Also quite interesting talk, especially if you find yourself looking at an impressive cloud providers bill and thinking about building your own Kubernetes managed cluster. I remember some takeaways:
+
+* stretching k8s clusters over multiple Cloud data centers is easy, but on-premises it's a completely different story
+* networking is a thing: asymmetric routing and no floating IPs between datacenters can make life hard
+* how to DNS externally?
+* CAPI for vSphere (since the SAXO infra is based on VMware)
+
+It was also a talk where I met some great colleagues:
+
+![](docs/saxo-k8s-cluster.jpg)
+
+
+## Backend-First IDP: A Production Roadmap With Argo CD, Crossplane, and OPA - Abhinav Sharma, KodeKloud & Aditya Soni, Sailpoint 
+
+[link to talk](https://colocatedeventseu2026.sched.com/event/2DY7M/backend-first-idp-a-production-roadmap-with-argo-cd-crossplane-and-opa-abhinav-sharma-kodekloud-aditya-soni-sailpoint) 
+
+What a funny talk! I didn't really learn much (this could partly depend on the fact, that I gave [a talk about a Platform Engineering toolchain with Crossplane & ArgoCD](https://www.youtube.com/watch?v=AaIeNStnuew) some years ago already), but the speakers had a good point:
+
+Having a portal is not a sign for a mature platform!
+
+![](docs/backend-first-idp001.jpg)
+
+Often a nice looking Backstage hides a hugh pile of crazy scripts:
+
+![](docs/backend-first-idp002.jpg)
+
+The live demo didn't really work sadly...
